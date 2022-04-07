@@ -61,5 +61,13 @@
   },
   "directories": {
     "test": "test"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buithaibinh/aws-sns-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/buithaibinh/aws-sns-validator/issues"
+  },
+  "homepage": "https://github.com/buithaibinh/aws-sns-validator#readme"
 }
