@@ -1,0 +1,64 @@
+{
+  "name": "aws-sns-validator",
+  "version": "1.0.0",
+  "description": "a package to validate aws sns messages",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepare": "yarn run build",
+    "prepublishOnly": "yarn test && yarn run lint",
+    "preversion": "yarn run lint",
+    "version": "yarn run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "build": "tsc --build tsconfig.build.json",
+    "prebuild": "yarn clean",
+    "clean": "rimraf lib",
+    "watch": "tsc -w",
+    "start": "ts-node src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint --cache .",
+    "test": "jest"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "keywords": [],
+  "author": "Binh Bui",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "dependencies": {
+    "lru-cache": "^7.7.3",
+    "requestretry": "^7.0.2"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/chai": "^4.3.0",
+    "@types/chai-as-promised": "^7.1.5",
+    "@types/jest": "^26.0.23",
+    "@types/lru-cache": "^7.6.1",
+    "@types/node": "^12.20.11",
+    "@types/reflect-metadata": "^0.1.0",
+    "@types/requestretry": "^1.12.8",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
+    "chai": "^4.3.6",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^7.25.0",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "mocha": "^9.2.2",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
+    "ts-jest": "^26.5.5",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
