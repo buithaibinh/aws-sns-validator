@@ -29,7 +29,7 @@ The message validator checks the `SigningCertURL`, `SignatureVersion`, and
 `Signature` to make sure they are valid and consistent with the message data.
 
 ```javascript
-import MessageValidator from 'aws-sns-validator';
+import { MessageValidator } from 'aws-sns-validator';
 const validator = new MessageValidator();
 try {
     await validator.validate(message);
