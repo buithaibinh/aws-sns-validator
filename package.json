@@ -1,10 +1,11 @@
 {
   "name": "aws-sns-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a package to validate aws sns messages",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "publish": "npm publish --access public",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn run lint",
     "preversion": "yarn run lint",
