@@ -7,23 +7,27 @@ describe('test validate', () => {
   it('should throw 404', async () => {
     const validator = new MessageValidator();
     const message = {
-      Type: 'SubscriptionConfirmation',
-      MessageId: 'f99d8b74-656a-46a8-a194-545b31229e26',
-      Token:
-        '2336412f37fb687f5d51e6e2425dacbbab295b8a534f477ee003773c6e75c0d88a6c9815b86decae2b9971ea081e4ee21ae55607e07f98967730fb0eefbd1dec7fa7974f226c2b2b9f4adbce689a2ce4ed3bfb0f84af3e44141f5287f0f377dcb873584bc3004c9214b4572d38d6a1e7a9e7a7d154e4fff7a0d582aabc12d19f',
-      TopicArn: 'arn:aws:sns:us-east-1:820710015775:MyTestingTopic',
+      Type: 'Notification',
+      MessageId: '4c807a89-9ef9-543b-bfab-2f4ed41e91b4',
+      TopicArn:
+        'arn:aws:sns:us-east-1:853553028582:marbot-dev-alert-Topic-8CT7ZJRNSA5Y',
+      Subject:
+        'INSUFFICIENT_DATA: "insufficient test" in US East (N. Virginia)',
       Message:
-        'You have chosen to subscribe to the topic arn:aws:sns:us-east-1:820710015775:MyTestingTopic.\nTo confirm the subscription, visit the SubscribeURL included in this message.',
-      SubscribeURL:
-        'https://sns.us-east-1.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:us-east-1:820710015775:MyTestingTopic&Token=2336412f37fb687f5d51e6e2425dacbbab295b8a534f477ee003773c6e75c0d88a6c9815b86decae2b9971ea081e4ee21ae55607e07f98967730fb0eefbd1dec7fa7974f226c2b2b9f4adbce689a2ce4ed3bfb0f84af3e44141f5287f0f377dcb873584bc3004c9214b4572d38d6a1e7a9e7a7d154e4fff7a0d582aabc12d19f',
-      Timestamp: '2022-04-07T11:50:06.563Z',
+        '{"AlarmName":"insufficient test","AlarmDescription":null,"AWSAccountId":"853553028582","NewStateValue":"INSUFFICIENT_DATA","NewStateReason":"tets","StateChangeTime":"2019-08-09T10:19:19.614+0000","Region":"US East (N. Virginia)","OldStateValue":"OK","Trigger":{"MetricName":"CallCount2","Namespace":"AWS/Usage","StatisticType":"Statistic","Statistic":"AVERAGE","Unit":null,"Dimensions":[{"value":"API","name":"Type"},{"value":"PutMetricData","name":"Resource"},{"value":"CloudWatch","name":"Service"},{"value":"None","name":"Class"}],"Period":300,"EvaluationPeriods":1,"ComparisonOperator":"GreaterThanThreshold","Threshold":1.0,"TreatMissingData":"- TreatMissingData:                    missing","EvaluateLowSampleCountPercentile":""}}',
+      Timestamp: '2019-08-09T10:19:19.644Z',
       SignatureVersion: '1',
       Signature:
-        'k7WqvIKR/CBk9iEwED5vvLYHv+8QBlOfYaRi9Fa7A8Rn+pqBSyAeNuKX+ozc45BbUCuRr8B1svOJYhJ6lT5/Jh+MypOZtiT10G2H4Rnuj0Dx3xQg+gf+lFDTNQ2JIBgHeE2XeHr2XfH9oUg0bnWCuueS4Gb27+3Az1u4TZmxqVcgKO7/C/GsuAUcI6z0pTo5t605MbkgmuJ0gz/jVbsAkg6uqoZzIb/Xd+S7P64lGTxSRsAaiIJ7WxFWUt4MMuMOQZcxauQb2lNkmCn19xEI0R/hBNVOioJwU7D62ZbFVmSWQQpe4JW1L7mSDwZ9ydv/uXlCoKn6u/GrAGcE39udqw==',
+        'gnCKAUYX6YlBW3dkOmrSFvdB6r82Q2He+7uZV9072sdCP0DSaR46ka/4ymSdDfqilqxjJ9hajd9l7j8ZsL98vYdUbut/1IJ2hsuALF9nd/HwNLPPWvKXaK/Y3Hp57izOpeBAkuR6koitSbXX50lEj7FraaMVQfpexm01z7IUcx4vCCvZBTdQLbkWw+TYWkWNsMrqarW39zy474SmTBCSZlz1eoV6tCwYk2Z2G2awiXpnfsQRRZvHn4ot176oY+ADAFJ0sIa44effQXq+tAWE6/Z3M5rjtfg6OULDM+NGEmnVZL3xyWK8bIzB48ZclQo3ZsvLPGmCNQLlFpaP/3fGGg==',
       SigningCertURL:
-        'https://sns.us-east-1.amazonaws.com/SimpleNotificationService-7ff5318490ec183fbaddaa2a969abfda.pem',
+        'https://sns.us-east-1.amazonaws.com/SimpleNotificationService-6aad65c2f9911b05cd53efda11f913f9.pem',
+      UnsubscribeURL:
+        'https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:853553028582:marbot-dev-alert-Topic-8CT7ZJRNSA5Y:86a160f0-c3c5-4ae1-ae50-2903eede0af1',
     };
-      const res = await validator.validate(message);
-      expect(!!res).to.be.true;
+    try {
+      await validator.validate(message);
+    } catch (error: any) {
+      expect(error.message).to.equal('expected 200 status code, received: 404');
+    }
   });
 });
