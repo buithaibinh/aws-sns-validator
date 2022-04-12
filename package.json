@@ -1,11 +1,10 @@
 {
   "name": "aws-sns-validator",
-  "version": "1.0.1",
+  "version": "1.1.5",
   "description": "a package to validate aws sns messages",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "publish": "npm publish --access public",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn run lint",
     "preversion": "yarn run lint",
@@ -23,7 +22,7 @@
   "files": [
     "lib/**/*"
   ],
-  "keywords": [],
+  "keywords": ["aws-sns-validator", "aws-sns", "validator", "sns", "message", "validation"],
   "author": "Binh Bui",
   "license": "ISC",
   "husky": {
